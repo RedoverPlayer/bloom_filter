@@ -20,7 +20,7 @@ import org.openjdk.jmh.infra.Blackhole;
 @Threads(1)
 @Fork(1)
 public class BloomBenchmark {
-    @Param({"2", "4", "8", "16"})
+    @Param({"10", "100", "1000", "10000"})
     int elemNums;
 
     // init random number generator
