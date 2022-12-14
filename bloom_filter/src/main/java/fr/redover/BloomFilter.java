@@ -7,12 +7,10 @@ public class BloomFilter {
     private final IStorage storage;
     private final int hashFunctions;
     private final int size;
-    private final Hash hashHandler;
 
     public BloomFilter(int elemsNum, int storageType, int hashFunctions, double desiredFalsePositiveRate) throws NoSuchAlgorithmException{
         this.hashFunctions = hashFunctions;
         this.size = this.optimalSize(elemsNum, desiredFalsePositiveRate);
-        this.hashHandler = new Hash();
         // System.out.println("Size: " + this.size);
 
         // initialize bloom filter
@@ -24,13 +22,13 @@ public class BloomFilter {
     }
 
     public void add(String word) {
-        int[] hash = hashHandler.hash(word, hashFunctions, size);
+        int[] hash = Hash.hash(word, hashFunctions, size);
         storage.set(hash[0], 1);
         storage.set(hash[1], 1);
     }
 
     public boolean contains(String word) {
-        int[] hash = hashHandler.hash(word, hashFunctions, size);
+        int[] hash = Hash.hash(word, hashFunctions, size);
         return storage.get(hash[0]) == 1 && storage.get(hash[1]) == 1;
     }
 
