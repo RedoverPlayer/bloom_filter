@@ -15,8 +15,11 @@ public class BloomTest {
     private BloomFilter bloomFilterLinkedList;
     private BloomFilter bloomFilterTab;
 
+    /**
+     * Initialize the BloomFilter objects
+     */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         bloomFilterArrayList = new BloomFilter(1000, 1, 0.01);
         bloomFilterLinkedList = new BloomFilter(1000, 2, 0.01);
         bloomFilterTab = new BloomFilter(1000, 3, 0.01);
