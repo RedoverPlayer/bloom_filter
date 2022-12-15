@@ -17,9 +17,9 @@ public class BloomTest {
 
     @Before
     public void setUp() throws Exception {
-        bloomFilterArrayList = new BloomFilter(1000, 1, 3, 0.01);
-        bloomFilterLinkedList = new BloomFilter(1000, 2, 3, 0.01);
-        bloomFilterTab = new BloomFilter(1000, 3, 3, 0.01);
+        bloomFilterArrayList = new BloomFilter(1000, 1, 0.01);
+        bloomFilterLinkedList = new BloomFilter(1000, 2, 0.01);
+        bloomFilterTab = new BloomFilter(1000, 3, 0.01);
     }
 
     @Test

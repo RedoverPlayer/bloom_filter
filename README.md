@@ -11,7 +11,7 @@ A Bloom Filter uses a byte array to store the data. Each element is hashed and t
 To test the performance of the Bloom Filter, I used a Benchark class. The benchmark uses jmh to measure the average time for adding elements to the Bloom Filter as well as for testing if an element is present in the Bloom Filter. The benchmark has a parameter for the number of elements to add to it to compare the performance with different sizes.
 
 ## Results
-![bench1](img/bench1.png)
+![bench1](img/bench1.png)  
 Here is the result of the benchmark with larger and larger number of elements. We can see that the arrayList is the slowest storage type, with a complexity that seems exponential, while the ArrayList and table storage types seems to have a linear complexity.
 
 ## Why does the results differ

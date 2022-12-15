@@ -32,13 +32,13 @@ public class BloomBenchmark {
     // Init bloom filters with different storage types
     @Setup(Level.Invocation)
     public void setUp() throws NoSuchAlgorithmException {
-        bloomFilterArrayList = new BloomFilter(elemNums, 1, 3, 0.01);
-        bloomFilterLinkedList = new BloomFilter(elemNums, 2, 3, 0.01);
-        bloomFilterTab = new BloomFilter(elemNums, 3, 3, 0.01);
+        bloomFilterArrayList = new BloomFilter(elemNums, 1, 0.1);
+        bloomFilterLinkedList = new BloomFilter(elemNums, 2, 0.1);
+        bloomFilterTab = new BloomFilter(elemNums, 3, 0.1);
     }
 
     @Benchmark
-    public void arrayListAdd(Blackhole bh){
+    public void arrayListAdd(Blackhole bh) {
         for (int i = 0; i < elemNums; i++) {
             bloomFilterArrayList.add(String.valueOf(random.nextInt()));
         }

@@ -8,10 +8,11 @@ public class BloomFilter {
     private final int hashFunctions;
     private final int size;
 
-    public BloomFilter(int elemsNum, int storageType, int hashFunctions, double desiredFalsePositiveRate) throws NoSuchAlgorithmException{
-        this.hashFunctions = hashFunctions;
+    public BloomFilter(int elemsNum, int storageType, double desiredFalsePositiveRate) throws NoSuchAlgorithmException{
         this.size = this.optimalSize(elemsNum, desiredFalsePositiveRate);
+        this.hashFunctions = this.optimalHashFunctions(elemsNum, this.size);
         // System.out.println("Size: " + this.size);
+        // System.out.println("Hash functions: " + this.hashFunctions);
 
         // initialize bloom filter
         switch (storageType) {
@@ -34,5 +35,9 @@ public class BloomFilter {
 
     private int optimalSize(int n, double desiredFalsePositiveRate) {
         return (int) Math.ceil((n * Math.log(desiredFalsePositiveRate)) / Math.log(1.0 / (Math.pow(2.0, Math.log(2.0)))));
+    }
+
+    private int optimalHashFunctions(int n, int m) {
+        return (int) Math.ceil((m / n) * Math.log(2.0));
     }
 }
