@@ -1,6 +1,5 @@
 package fr.redover;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -30,7 +29,7 @@ public class BloomBenchmark {
 
     // Init bloom filters with different storage types
     @Setup(Level.Invocation)
-    public void setUp() throws NoSuchAlgorithmException {
+    public void setUp() {
         bloomFilterArrayList = new BloomFilter(elemNums, 1, 0.01);
         bloomFilterLinkedList = new BloomFilter(elemNums, 2, 0.01);
         bloomFilterTab = new BloomFilter(elemNums, 3, 0.01);
