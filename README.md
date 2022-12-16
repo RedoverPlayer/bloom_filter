@@ -13,12 +13,12 @@ To test the performance of the Bloom Filter, I used a Benchark class. The benchm
 ## Results
 ![bench1](img/bench1.png)  
 ```
-BloomBenchmark.arrayListAdd              7000  avgt    5     409,776 ±    396,579  us/op
-BloomBenchmark.arrayListContains         7000  avgt    5     393,195 ±    302,983  us/op
-BloomBenchmark.linkedListAdd             7000  avgt    5  279928,060 ±  11075,822  us/op
-BloomBenchmark.linkedListContains        7000  avgt    5  140827,180 ±   5994,355  us/op
-BloomBenchmark.tabAdd                    7000  avgt    5     493,989 ±   1454,171  us/op
-BloomBenchmark.tabContains               7000  avgt    5     379,203 ±    256,367  us/op
+BloomBenchmark.arrayListAdd              9000  avgt    5     655,910 ±    254,645  us/op
+BloomBenchmark.arrayListContains         9000  avgt    5     571,083 ±    432,155  us/op
+BloomBenchmark.linkedListAdd             9000  avgt    5  697121,060 ±  18423,286  us/op
+BloomBenchmark.linkedListContains        9000  avgt    5  233350,860 ±   5442,844  us/op
+BloomBenchmark.tabAdd                    9000  avgt    5     531,194 ±    287,208  us/op
+BloomBenchmark.tabContains               9000  avgt    5     570,148 ±    346,933  us/op
 ```
 Here is the result of the benchmark with larger and larger number of elements. We can see that the arrayList is the slowest storage type, with a complexity that seems exponential, while the ArrayList and table storage types seems to have a linear complexity. There is already a function to calculate the optimal size of the Bloom Filter. It is calculated as 
 ```java
@@ -29,18 +29,18 @@ where `n` is the number of elements to add to the Bloom Filter and `desiredFalse
 ----
 ![bench2](img/bench2.png)  
 ```
-BloomBenchmark.arrayListAdd              7000  avgt    5     613,887 ±   440,327  us/op
-BloomBenchmark.arrayListContains         7000  avgt    5     540,762 ±   415,092  us/op
-BloomBenchmark.linkedListAdd             7000  avgt    5  280871,820 ±  5605,365  us/op
-BloomBenchmark.linkedListContains        7000  avgt    5  141705,320 ±  2929,759  us/op
-BloomBenchmark.tabAdd                    7000  avgt    5     522,676 ±   409,755  us/op
-BloomBenchmark.tabContains               7000  avgt    5     527,860 ±   352,732  us/op
+BloomBenchmark.arrayListAdd              9000  avgt    5      886,423 ±    425,173  us/op
+BloomBenchmark.arrayListContains         9000  avgt    5      681,259 ±    460,200  us/op
+BloomBenchmark.linkedListAdd             9000  avgt    5  1615438,400 ±  58709,780  us/op
+BloomBenchmark.linkedListContains        9000  avgt    5   232086,700 ±   7726,322  us/op
+BloomBenchmark.tabAdd                    9000  avgt    5      726,128 ±    512,226  us/op
+BloomBenchmark.tabContains               9000  avgt    5      681,557 ±    530,257  us/op
 ```
 I then added a function to calculate the optimal number of hashes as per wikipedia (https://en.wikipedia.org/wiki/Bloom_filter#Optimal_number_of_hash_functions). The optimal number of hashes is calculated as
 ```java
 Math.ceil((m / n) * Math.log(2.0))
 ```
-where `m` is the size of the Bloom Filter and `n` is the number of elements to add to it. I then ran the benchmark again with the optimal number of hashes. We can see that the difference is not very significant, it is within the error margin.
+where `m` is the size of the Bloom Filter and `n` is the number of elements to add to it. I then ran the benchmark again with the optimal number of hashes. We can see that the difference is not very significant, it is within the error margin. The only exception is the linkedList contain, which seems to increase in complexity a lot slower than before.
 
 
 ## Why does the results differ

@@ -4,17 +4,17 @@ package fr.redover;
  * StorageTab class, uses a tab to store data
  */
 public class StorageTab implements IStorage {
-    private final int[] storage;
+    private final boolean[] storage;
 
     public StorageTab(int size) {
-        storage = new int[size];
+        storage = new boolean[size];
     }
 
-    public void set(int index, int value) {
+    public void set(int index, boolean value) {
         storage[index] = value;
     }
 
-    public int get(int index) {
+    public boolean get(int index) {
         return storage[index];
     }
 }

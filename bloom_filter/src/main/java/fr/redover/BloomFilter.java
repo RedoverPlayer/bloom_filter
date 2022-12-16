@@ -29,8 +29,10 @@ public class BloomFilter {
      */
     public void add(String word) {
         int[] hash = Hash.hash(word, hashFunctions, size);
-        storage.set(hash[0], 1);
-        storage.set(hash[1], 1);
+
+        for (int i = 0; i < hashFunctions; i++) {
+            storage.set(hash[i], true);
+        }
     }
 
     /**
@@ -40,7 +42,14 @@ public class BloomFilter {
      */
     public boolean contains(String word) {
         int[] hash = Hash.hash(word, hashFunctions, size);
-        return storage.get(hash[0]) == 1 && storage.get(hash[1]) == 1;
+
+        for (int i = 0; i < hashFunctions; i++) {
+            if (!storage.get(hash[i])) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
