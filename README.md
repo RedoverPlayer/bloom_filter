@@ -42,6 +42,7 @@ Math.ceil((m / n) * Math.log(2.0))
 ```
 where `m` is the size of the Bloom Filter and `n` is the number of elements to add to it. I then ran the benchmark again with the optimal number of hashes. We can see that the difference is not very significant, it is within the error margin. The only exception is the linkedList contain, which seems to increase in complexity a lot slower than before.
 
+I tried to add a error rate benchmark but it is always fixed to 50%. I haven't found the reason behind this, but it seems it comes from the hash function.
 
 ## Why does the results differ
 The results differ because the linkedList has a complexity of O(n) for adding elements, while the ArrayList and table have a complexity of O(1). 
