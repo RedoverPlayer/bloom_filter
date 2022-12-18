@@ -50,7 +50,7 @@ public class BloomBenchmark {
     }
 
     @Benchmark
-    public void tabAdd(Blackhole bh)  {
+    public void tabAdd(Blackhole bh) {
         for (int i = 0; i < elemNums; i++) {
             bloomFilterTab.add(String.valueOf(random.nextInt()));
         }

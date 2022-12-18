@@ -1,5 +1,7 @@
 package fr.redover;
 
+import java.awt.desktop.SystemSleepEvent;
+
 public class BloomFilter {
     private final IStorage storage;
     private final int hashFunctions;
@@ -14,6 +16,18 @@ public class BloomFilter {
     public BloomFilter(int elemsNum, int storageType, double desiredFalsePositiveRate) {
         this.size = this.optimalSize(elemsNum, desiredFalsePositiveRate);
         this.hashFunctions = this.optimalHashFunctions(elemsNum, this.size);
+
+        // initialize bloom filter
+        switch (storageType) {
+            case 1 -> storage = new StorageArrayList(size);
+            case 2 -> storage = new StorageLinkedList(size);
+            default -> storage = new StorageTab(size);
+        }
+    }
+
+    public BloomFilter(int storageType, int hashFunctions, int size) {
+        this.size = size;
+        this.hashFunctions = hashFunctions;
 
         // initialize bloom filter
         switch (storageType) {
